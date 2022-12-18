@@ -1,77 +1,53 @@
 #include<bits/stdc++.h>
+
 using namespace std;
 
 bool isValid(string str){
+    stack<char> st;
 
-  stack<char> st;
-  bool ans = true;
+    for(int i=0;i<str.size();i++){
+        if(str[i]=='(' || str[i]=='{' || str[i]=='[')
+        st.push(str[i]);
 
-  for(int i=0;i<str.size();i++){
-     
-     if(str[i]=='(' or str[i]=='[' or str[i]=='{')
-     st.push(str[i]);
-
-      else if (str[i]==')'){
-        if(!st.empty() and st.top()=='('){
-
+        else if (str[i]==')'){
+            if(!st.empty() && st.top()=='(')
             st.pop();
-            
-        }
-        else{
-            ans=false;
-            break;
-            
+            else
+            return false;
         }
 
-      }
-
-       else if (str[i]=='}'){
-        if(!st.empty() and st.top()=='{'){
-            
+        else if(str[i]=='}'){
+            if(!st.empty() && st.top()=='{')
             st.pop();
-            
-        }
-        else{
-            ans=false;
-            break;
+            else
+            return false;
         }
 
-      }
-
-       else if (str[i]==']'){
-        if(!st.empty() and st.top()=='['){
-            
+        else if(str[i]==']'){
+            if(!st.empty() && st.top()=='[')
             st.pop();
-            
+
+            else
+            return false;
         }
-        else{
-            ans=false;
-            break;
-        }
+    }
 
-      }
-  }
-
-if(!st.empty())
-return false;
-else
-return ans;
-
-
-
+    if(st.empty())
+    return true;
+    else
+    return false;
+    
 
 }
 
 int main(){
 
-    string str="{[(()))]}";
+    string str = "{[((((())))]";
 
-    if(isValid(str)){
-        cout<<"Balanced Paranthesis...."<<endl;
-    }
-
+    if(isValid(str))
+    cout<<"Balanced String..."<<endl;
     else
-    cout<<"Not a balanced Paranthesis...."<<endl;
+    cout<<"Unbalanced String..."<<endl;
 
 
     return 0;

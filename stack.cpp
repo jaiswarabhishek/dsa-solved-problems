@@ -15,6 +15,7 @@ class stack {
     }
 
     void push(int num){
+
         if(top==size-1)
         cout<<"Stack Overflow...."<<endl;
 
@@ -23,6 +24,7 @@ class stack {
           top++;
           arr[top]=num;
         }
+        
     }
 
     void pop(){
