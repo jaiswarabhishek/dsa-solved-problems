@@ -99,6 +99,38 @@ void atDelete(node* &head,int val){
 
 }
 
+node* reverse(node* &head){
+
+    node* prevPtr = NULL;
+    node* currPtr=head;
+    node* nextPtr;
+
+    while(currPtr!=NULL){
+        nextPtr=currPtr->next;
+        currPtr->next=prevPtr;
+         
+         prevPtr=currPtr;
+         currPtr=nextPtr;
+    }
+    return prevPtr;
+}
+
+void sort(node* &head){
+    node* i;
+    node* j;
+    int temp;
+
+    for(i=head;i->next!=NULL;i=i->next){
+        for(j=head;j->next!=NULL;j=j->next){
+            if(j->data > j->next->data){
+                temp=j->data;
+                j->data=j->next->data;
+                j->next->data=temp;
+            }
+        }
+    }
+}
+
 
 void display(node* head){
     node* temp = head;
@@ -127,13 +159,21 @@ int main(){
     node* head =NULL;
    
     insertAtHead(head,5);
-    insertAtHead(head,4);
+    insertAtHead(head,48);
     insertAtHead(head,3);
-    insertAtHead(head,2);
-    insertAtHead(head,1);
+    insertAtHead(head,82);
+    insertAtHead(head,19);
+    insertAtHead(head,59);
     
+
     
+     sort(head);
+
     display(head);
+   
+
+
+   
 
     return 0;
 }
