@@ -1,1 +1,2 @@
-pq.display();
+ad(head);
+    // atDelete(head,4);
