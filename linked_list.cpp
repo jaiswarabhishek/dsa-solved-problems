@@ -131,6 +131,29 @@ void sort(node* &head){
     }
 }
 
+node* reverseknodes(node* &head,int k){
+    node* prevPtr=NULL;
+    node* currPtr=head;
+    node* nextPtr;
+    int count=0;
+
+    while(currPtr!=NULL && count<k){
+        nextPtr=currPtr->next;
+        currPtr->next=prevPtr;
+        prevPtr=currPtr;
+        currPtr=nextPtr;
+       count++;
+    }
+
+     if(nextPtr!=NULL){
+    head->next=reverseknodes(nextPtr,k);
+     }
+ 
+   return prevPtr;
+
+
+}
+
 
 void display(node* head){
     node* temp = head;
@@ -158,16 +181,14 @@ int main(){
 
     node* head =NULL;
    
+    insertAtHead(head,6);
     insertAtHead(head,5);
-    insertAtHead(head,48);
+    insertAtHead(head,4);
     insertAtHead(head,3);
-    insertAtHead(head,82);
-    insertAtHead(head,19);
-    insertAtHead(head,59);
-    
-
-    
-     sort(head);
+    insertAtHead(head,2);
+    insertAtHead(head,1);
+    // display(reverse(head));
+    // display(reverseknodes(head,2));
 
     display(head);
    
