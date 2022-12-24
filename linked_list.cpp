@@ -86,6 +86,7 @@ void atDelete(node* &head,int val){
      
      if(head->next==NULL){
     deleteFromHead(head);
+    return;
      }
 
      while(temp->next->data!=val){
