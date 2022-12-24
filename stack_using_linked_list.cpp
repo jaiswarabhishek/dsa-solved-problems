@@ -12,43 +12,30 @@ class node{
     }
 };
 
-// same as insertAtTail
+// same as insertAtBegin
 void push(node* &head,int val){
 
 
-     node* n = new node(val);
-     node* temp = head;
-      
-      if(head==NULL){
-        head=n;
-        return;
-      }
-    
-     while(temp->next!=NULL){
-        temp= temp->next;
-     }
-     temp->next=n;
+    node* n = new node(val);
+   n->next=head;
+   head=n;
      
 }
 
-//same as deleteFromEnd
+//same as deleteFromStart
 
 void pop(node* &head){
-    if(head==NULL){
-        cout<<"Deletion not possible..."<<endl;
+   if(head==NULL)
+    {
+        cout<<"List is empty..."<<endl;
         return;
     }
-
     node* temp = head;
-    
-    
-    while(temp->next->next!=NULL){
-        temp=temp->next;
-    }
- node* nodeDelete = temp->next->next;
-    temp->next=NULL;
 
-    delete nodeDelete;
+
+   head=temp->next;
+
+   delete temp; 
 
 }
 
@@ -68,6 +55,7 @@ int main(){
   push(head,2);
   push(head,3);
   push(head,4);
+  pop(head);
   pop(head);
   pop(head);
   
