@@ -56,6 +56,15 @@ class queue {
         }
   }
 
+ 
+
+  void display(){
+   
+   for(int i=front;i<=rear;i++){
+    cout<<arr[i]<<" ";
+   }
+  }
+
 };
 
 int main(){
@@ -65,12 +74,9 @@ int main(){
     q.enqueue(10);
     q.enqueue(11);
     q.enqueue(12);
-    cout<<q.peek()<<endl;
-    q.dequeue();
-    cout<<q.peek()<<endl;
+    q.enqueue(13);
+    q.enqueue(14);
 
-     q.dequeue();
-     q.dequeue();
-     cout<<q.isEmpty()<<endl;
+    q.display();
     return 0;
 }
