@@ -45,6 +45,50 @@ node* search(node* root , int key){
     return search(root->right,key);
 }
 
+node* inorderSucc(node* root){
+    node* curr=root;
+    while(curr && curr->left !=NULL){
+        curr= curr->left;
+    }
+
+    return curr;
+}
+
+
+node* deleteBST(node* root , int key){
+
+    if(root->data>key){
+       root->left= deleteBST(root->left,key);
+    }
+
+    else if (root->data<key){
+       root->right= deleteBST(root->right,key);
+    }
+
+    else{
+       if(root->left==NULL){
+        node* temp = root->right;
+        delete root;
+        return temp;
+       }
+       else if(root->right==NULL){
+        node* temp = root->left;
+        delete root;
+        return temp;
+       }
+     
+       
+        node* temp = inorderSucc(root->right);
+        root->data = temp->data;
+        root->right = deleteBST(root->right,temp->data);
+     
+    }
+ 
+   return root;
+
+
+}
+
 void inorderTraversal(node* root){
     if(root==NULL)
     return;
@@ -54,7 +98,6 @@ void inorderTraversal(node* root){
     inorderTraversal(root->right);
 }
  
-
 int main(){
      
 node* root=NULL;
@@ -66,12 +109,10 @@ root=insertBST(root,arr[0]);
 for(int i=1;i<6;i++)
 insertBST(root,arr[i]);
 
-  if(search(root,0))
-  cout<<"Element exist"<<endl;
-  else
-  cout<<"Not exist"<<endl;
+  inorderTraversal(root);
+  cout<<endl;
 
-
+inorderTraversal(deleteBST(root,3));
 
     return 0;
 }
