@@ -151,8 +151,62 @@ node* reverseknodes(node* &head,int k){
      }
  
    return prevPtr;
+}
 
+void makeCycle(node* &head,int pos){
 
+int count = 1;
+node* temp=head;
+node* startNode;
+
+while(temp->next!=NULL){
+
+    if(count==pos){
+        startNode=temp;
+    }
+    temp=temp->next;
+    count++;
+}
+
+temp->next=startNode;
+
+}
+
+bool detectCycle(node* head){
+        node* slow=head;
+        node* fast=head;
+
+        while(fast!=NULL && fast->next!=NULL){
+             slow=slow->next;
+             fast=fast->next->next;
+
+             if(slow==fast){
+               return true; 
+             }
+
+        }
+
+        return false;
+
+}
+
+void removeCycle(node* &head){
+
+    node* slow=head;
+    node* fast=head;
+
+    do{
+     slow=slow->next;
+     fast=fast->next->next;
+    }while(slow!=fast);
+
+fast=head;
+
+    while(slow->next!=fast->next){
+        slow=slow->next;
+        fast=fast->next;
+    }
+    slow->next=NULL;
 }
 
 
@@ -192,6 +246,9 @@ int main(){
     // display(reverseknodes(head,2));
 
     display(head);
+
+    
+
    
 
 
