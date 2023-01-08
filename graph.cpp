@@ -4,6 +4,18 @@ using namespace std;
 
 // } Driver Code Ends
 class Solution {
+   private:
+    void dfs(int node, vector<int>adj[],int visit[],vector<int>&dfsList ){
+        visit[node]=1;
+        dfsList.push_back(node);
+        for(auto it: adj[node]){
+            if(!visit[it]){
+                dfs(it,adj,visit,dfsList);
+            }
+        }
+    }
+
+
   public:
     // Function to return Breadth First Traversal of given graph.
     vector<int> bfsOfGraph(int V, vector<int> adj[]) {
@@ -18,8 +30,8 @@ class Solution {
             int node = q.front();
             q.pop();
             bfs.push_back(node);
-            
-            for(auto it: adj[node]){
+           
+            for(auto it : adj[node]){
                 if(!visit[it]){
                     visit[it]=1;
                     q.push(it);
@@ -29,6 +41,17 @@ class Solution {
         }
         return bfs;
         
+    }
+
+     vector<int> dfsOfGraph(int V, vector<int> adj[]) {
+        int visit[V] = {0};
+        int start = 0;
+        vector<int>dfsList;
+        dfs(start,adj,visit,dfsList);
+        return dfsList;
+        
+        
+        // Code here
     }
 };
 
