@@ -76,7 +76,7 @@ class Solution {
         return dfsList;
     }
 
-     // Function to detect cycle in an undirected graph.
+     // Function to detect cycle in an undirected graph using BFS method.
     bool isCycle(int V, vector<int> adj[]) {
         // Code here
         int visit[V]={0};
