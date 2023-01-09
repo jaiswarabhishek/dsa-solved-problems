@@ -8,11 +8,36 @@ class Solution {
     void dfs(int node, vector<int>adj[],int visit[],vector<int>&dfsList ){
         visit[node]=1;
         dfsList.push_back(node);
-        for(auto it: adj[node]){
+        
+        for(auto it : adj[node]){
             if(!visit[it]){
                 dfs(it,adj,visit,dfsList);
             }
         }
+    }
+
+     bool detect(int src , int visit[] ,vector<int> adj[]){
+        visit[src]=1;
+        queue<pair<int,int>> q;
+        q.push({src,-1});
+        
+        while(!q.empty()){
+            int node = q.front().first;
+            int parent = q.front().second;
+            q.pop();
+            for(auto adjnode : adj[node]){
+                if(!visit[adjnode]){
+                    visit[adjnode]=1;
+                    q.push({adjnode,node});
+                    
+                }
+                else if (parent!=adjnode)
+                return true;
+            }
+        }
+        
+        return false;
+        
     }
 
 
@@ -49,9 +74,20 @@ class Solution {
         vector<int>dfsList;
         dfs(start,adj,visit,dfsList);
         return dfsList;
-        
-        
+    }
+
+     // Function to detect cycle in an undirected graph.
+    bool isCycle(int V, vector<int> adj[]) {
         // Code here
+        int visit[V]={0};
+        for(int i=0;i<V;i++){
+            if(!visit[i])
+        {
+        if(detect(i,visit,adj))
+        return true;
+        }
+        }
+        return false;
     }
 };
 
