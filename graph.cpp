@@ -1,8 +1,7 @@
-//{ Driver Code Starts
+
 #include <bits/stdc++.h>
 using namespace std;
 
-// } Driver Code Ends
 class Solution {
    private:
     void dfs(int node, vector<int>adj[],int visit[],vector<int>&dfsList ){
@@ -16,7 +15,7 @@ class Solution {
         }
     }
 
-     bool detect(int src , int visit[] ,vector<int> adj[]){
+     bool detectUsingBFS(int src , int visit[] ,vector<int> adj[]){
         visit[src]=1;
         queue<pair<int,int>> q;
         q.push({src,-1});
@@ -38,6 +37,20 @@ class Solution {
         
         return false;
         
+    }
+
+    bool detectUsingDFS(int node , int parent ,int visit[],vector<int> adj[] ){
+        visit[node]=1;
+
+        for(auto it : adj[node]){
+            if(!visit[it]){
+                if(detectUsingDFS(it,node,visit,adj))  // This line recursively return true
+                return true;
+            }
+            else if (parent!=it)
+            return true;
+        }
+        return false;
     }
 
 
@@ -83,15 +96,25 @@ class Solution {
         for(int i=0;i<V;i++){
             if(!visit[i])
         {
-        if(detect(i,visit,adj))
+        if(detectUsingBFS(i,visit,adj))  //For Multiple Component Graph
         return true;
         }
         }
         return false;
     }
+     
+    // Function To detect cycle in an undirected graph using DFS method
+    bool isCycleDFS(int V , vector<int>adj[]){
+        int visit[V]={0};  
+
+        detectUsingDFS(0,-1,adj,visit);  //For Single Component Graph
+
+    }
+
+
 };
 
-//{ Driver Code Starts.
+
 int main() {
     int tc;
     cin >> tc;
@@ -120,4 +143,3 @@ int main() {
     }
     return 0;
 }
-// } Driver Code Ends
