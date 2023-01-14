@@ -1,4 +1,3 @@
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -52,7 +51,6 @@ class Solution {
         }
         return false;
     }
-
 
   public:
     // Function to return Breadth First Traversal of given graph.
@@ -110,19 +108,14 @@ class Solution {
         detectUsingDFS(0,-1,adj,visit);  //For Single Component Graph
 
     }
-
-
 };
-
 
 int main() {
     int tc;
     cin >> tc;
     while (tc--) {
         int V, E;
-        cin >> V >>
-
-            E;
+        cin >> V >>E;
 
         vector<int> adj[V];
 
