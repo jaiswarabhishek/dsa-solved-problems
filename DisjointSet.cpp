@@ -14,6 +14,7 @@ class DisjointSet{
         parent[i]=i;
     }
 
+//Path Compression finding parent for given node
     int findPar(int node){
         if(node==parent[node])
         return node;
@@ -21,6 +22,7 @@ class DisjointSet{
         return parent[node]=findPar(parent[node]);
     }
 
+// UnionByRank connecting the two nodes
     void unionByRank(int u, int v){
         int ulp_u = findPar(u);
         int ulp_v = findPar(v);
