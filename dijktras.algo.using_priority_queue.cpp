@@ -10,13 +10,25 @@ class Solution
 	public:
 	//Function to find the shortest distance of all the vertices
     //from the source vertex S.
+    int shortest_path(int node,vector<int>&parent){
+        if(parent[node]==S)
+        return parent[node];
+
+        shortest_path(parent[node],parent);
+        // print path
+    }
     vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
     {
         // Code here
         // Priority Queue will store edgeWeight and the node {edgeWeight,Node}
+        
         priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
         
         vector<int>dis(V);
+        vector<int>parent(V);
+        for(int i=0;i<V;i++)
+        parent[i]=i;
+       
         for(int i=0;i<V;i++)
         dis[i]=1e9;
         
@@ -25,6 +37,7 @@ class Solution
         pq.push({0,S});
         
         while(!pq.empty()){
+           
             int wtg = pq.top().first;
             int node = pq.top().second;
             pq.pop();
@@ -35,12 +48,17 @@ class Solution
                 
                 if(edgeWtg + wtg < dis[adjNode])
                 {
+                    vector<int>temp;
                     dis[adjNode] = edgeWtg+wtg;
                     pq.push({dis[adjNode],adjNode});
+                    parent[adjNode]=node;
                 }
                 
             }
+
         }
+
+
         
         return dis;   
     }
