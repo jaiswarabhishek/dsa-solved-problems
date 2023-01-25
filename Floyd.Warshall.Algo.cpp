@@ -31,7 +31,7 @@ class Solution {
 	    // Negative Cycle Detect
 	    
 	    for(int i=0;i<matrix.size();i++){
-	           if(matrix[i][i]>0)
+	           if(matrix[i][i]<0)
 	           // has negative cycle
 	        }
 	    
