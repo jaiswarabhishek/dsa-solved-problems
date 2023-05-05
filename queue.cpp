@@ -17,6 +17,7 @@ class queue {
     void enqueue(int x){
         if(rear==size-1)
         cout<<"Queue overflow..."<<endl;
+        
         else{
             rear++;
             arr[rear]=x;

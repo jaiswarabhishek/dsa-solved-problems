@@ -146,9 +146,6 @@ int main(){
   insertAtTail(head,4);
    
   display(head);
-  
-  
-
     return 0;
 }
 

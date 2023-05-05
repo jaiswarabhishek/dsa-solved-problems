@@ -2,6 +2,7 @@
 using namespace std;
 
 int prescendance(char x){
+
     if(x=='^')
     return 3;
 
@@ -13,7 +14,6 @@ int prescendance(char x){
 
     else
     return -1;
-
 
 }
 
